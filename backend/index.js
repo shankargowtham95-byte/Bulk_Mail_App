@@ -47,13 +47,13 @@ app.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
-      return res.send("Please fill all fields");
+      return res.status(400).json({ message: "Please fill all fields" });
     }
     const existingUser = await User.findOne({
       email: email,
     });
     if (existingUser) {
-      return res.send("User already exists");
+      return res.status(409).json({ message: "User already exists" });
     }
     const user = new User({
       username: username,
@@ -61,9 +61,10 @@ app.post("/signup", async (req, res) => {
       password: password,
     });
     await user.save();
-    res.send("Account created successfully");
-  } catch {
-    res.send("Signup failed");
+    res.status(201).json({ message: "Account created successfully" });
+  } catch (error) {
+    console.error("Signup error:", error);
+    res.status(500).json({ message: "Signup failed" });
   }
 });
 
@@ -75,14 +76,15 @@ app.post("/login", async (req, res) => {
       password: password,
     });
     if (!user) {
-      return res.send("Invalid email or password");
+      return res.status(401).json({ message: "Invalid email or password" });
     }
-    res.send({
+    res.json({
       username: user.username,
       email: user.email,
     });
-  } catch {
-    res.send("Login failed");
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Login failed" });
   }
 });
 

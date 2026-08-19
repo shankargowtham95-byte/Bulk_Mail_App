@@ -27,8 +27,8 @@ function Login() {
       }
       loginUser(response.data);
       navigate("/home");
-    } catch {
-      setMessage("Login failed");
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Login failed");
     }
   };
   return (

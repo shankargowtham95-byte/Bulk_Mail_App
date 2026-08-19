@@ -25,13 +25,10 @@ function Signup() {
         email,
         password,
       });
-      if (response.data === "Account created successfully") {
-        alert("Account created successfully");
-        return;
-      }
-      setMessage(response.data);
-    } catch {
-      setMessage("Signup failed");
+      setMessage(response.data.message);
+      navigate("/login");
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Signup failed");
     }
   };
   return (
