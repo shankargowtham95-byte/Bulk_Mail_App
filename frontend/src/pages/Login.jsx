@@ -17,7 +17,7 @@ function Login() {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("https://bulk-mail-app-phi.vercel.app/login", {
         email,
         password,
       });

@@ -35,7 +35,7 @@ function BulkMail() {
     }
     setSending(true);
     try {
-      const response = await axios.post("http://localhost:5000/send-email", {
+      const response = await axios.post("https://bulk-mail-app-phi.vercel.app/send-email", {
         username: user?.username,
         recipients,
         subject,

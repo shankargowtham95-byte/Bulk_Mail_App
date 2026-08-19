@@ -23,7 +23,7 @@ function History() {
     }
     console.log("History user:",user);
     axios
-      .get(`http://localhost:5000/history/${user.username}`)
+      .get(`https://bulk-mail-app-phi.vercel.app/history/${user.username}`)
       .then((response) => {
         console.log("History from MongoDB:",response.data);
         setHistory(response.data);

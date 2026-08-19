@@ -20,7 +20,7 @@ function Signup() {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:5000/signup", {
+      const response = await axios.post("https://bulk-mail-app-phi.vercel.app/signup", {
         username,
         email,
         password,
