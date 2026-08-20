@@ -144,8 +144,8 @@ app.get("/history/:username", async (req, res) => {
   }
 });
 
-app.get("/",(req,res) =>{
+app.get("/", (req, res) =>{
   res.send("NovaVerse backend is running");
 });
 
-module.exports=app;
+module.exports = app;
