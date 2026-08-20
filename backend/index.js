@@ -5,7 +5,9 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin:"https://bulk-mail-app-tw1o.vercel.app/"
+}));
 app.use(express.json());
 
 mongoose
@@ -14,7 +16,7 @@ mongoose
     console.log("MongoDB connected");
   })
   .catch(() => {
-    console.log("MongoDB connection failed");
+    console.log("MongoDB connection failed",error);
   });
 
 const User = mongoose.model("User", {
@@ -142,10 +144,8 @@ app.get("/history/:username", async (req, res) => {
   }
 });
 
-if (require.main === module) {
-  app.listen(5000, () => {
-    console.log("Backend running on port 5000");
-  });
-}
+app.get("/",(req,res) =>{
+  res.send("NovaVerse backend is running");
+});
 
-module.exports = app;
+module.exports=app;
