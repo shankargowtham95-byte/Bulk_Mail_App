@@ -6,7 +6,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(cors({
-  origin:"https://bulk-mail-app-tw1o.vercel.app/"
+  origin:"https://bulk-mail-app-tw1o.vercel.app"
 }));
 app.use(express.json());
 
